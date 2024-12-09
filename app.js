@@ -15,6 +15,7 @@ app.use(express.json());
 
 //routes
 app.use("/api/v1", require("./routes/user"));
+app.use("/api/v1/books", require("./routes/book"));
 app.get("/", (req, res) => {
   res.send("hello just started");
 });

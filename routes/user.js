@@ -2,10 +2,10 @@ const express = require("express");
 const {
   loginController,
   registerController,
-} = require("../controller/userController");
+} = require("../controller/userController.js");
 const { authenticateToken } = require("../middlewares/userAuth");
-const { getUserController } = require("../controller/userController");
-const { updateController } = require("../controller/userController");
+const { getUserController } = require("../controller/userController.js");
+const { updateController } = require("../controller/userController.js");
 const router = express.Router();
 
 //register || post
