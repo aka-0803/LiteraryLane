@@ -80,7 +80,7 @@ const loginController = async (req, res) => {
       }
     });
   } catch (error) {
-    res.status(500).send({
+    return res.status(500).send({
       code: 0,
       message: `Internal server error: ${error.message}`,
     });
@@ -103,7 +103,7 @@ const getUserController = async (req, res) => {
       data: user,
     });
   } catch (error) {
-    res.status(500).send({
+    return res.status(500).send({
       code: 0,
       message: `Internal server error: ${error.message}`,
     });
@@ -131,7 +131,7 @@ const updateController = async (req, res) => {
       message: "user updated successfully!",
     });
   } catch (error) {
-    res.status(500).send({
+    return res.status(500).send({
       code: 0,
       message: `Internal server error: ${error.message}`,
     });
