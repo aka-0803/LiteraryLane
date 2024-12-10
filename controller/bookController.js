@@ -56,6 +56,80 @@ const updateController = async (req, res) => {
   }
 };
 
-const deleteController = async (req, res) => {};
+const deleteController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Book.findByIdAndDelete(id);
+    return res.status(200).send({
+      code: 1,
+      message: "Successfully deleted the Book",
+    });
+  } catch (error) {
+    return res.status(500).send({
+      code: 0,
+      message: `Internal server error: ${error.message}`,
+    });
+  }
+};
 
-module.exports = { addBookController, updateController, deleteController };
+const getAllBooksController = async (req, res) => {
+  try {
+    const data = await Book.find().sort({ createdAt: -1 });
+    return res.status(200).send({
+      code: 1,
+      totalCount: data.length,
+      Books: data,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      code: 0,
+      message: `Internal server error: ${error.message}`,
+    });
+  }
+};
+
+const getRecentController = async (req, res) => {
+  try {
+    const data = await Book.find().sort({ createdAt: -1 }).limit(4);
+    return res.status(200).send({
+      code: 1,
+      totalCount: data.length,
+      Books: data,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      code: 0,
+      message: `Internal server error: ${error.message}`,
+    });
+  }
+};
+
+const getController = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const book = await Book.findById(id);
+    if (!book) {
+      return res.status(404).send({
+        code: 0,
+        message: `Book not found`,
+      });
+    }
+    return res.status(200).send({
+      code: 1,
+      data: book,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      code: 0,
+      message: `Internal server error: ${error.message}`,
+    });
+  }
+};
+module.exports = {
+  addBookController,
+  updateController,
+  deleteController,
+  getAllBooksController,
+  getRecentController,
+  getController,
+};
