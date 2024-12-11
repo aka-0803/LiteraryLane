@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/connect");
-const cors = require('cors');
+const cors = require("cors");
 dotenv.config();
 
 //DB connection
@@ -16,6 +16,7 @@ app.use(express.json());
 //routes
 app.use("/api/v1", require("./routes/user"));
 app.use("/api/v1/books", require("./routes/book"));
+app.use("/api/v1/favourites", require("./routes/favourite"));
 app.get("/", (req, res) => {
   res.send("hello just started");
 });
