@@ -17,6 +17,7 @@ app.use(express.json());
 app.use("/api/v1", require("./routes/user"));
 app.use("/api/v1/books", require("./routes/book"));
 app.use("/api/v1/favourites", require("./routes/favourite"));
+app.use("/api/v1/cart",require('./routes/cart'));
 app.get("/", (req, res) => {
   res.send("hello just started");
 });
