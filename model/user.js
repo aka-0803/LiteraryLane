@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
   },
   favourites: [{ type: mongoose.Types.ObjectId, ref: "books" }],
   cart: [{ type: mongoose.Types.ObjectId, ref: "books" }],
-  orders: [{ type: mongoose.Types.ObjectId, ref: "order" }],
+  orders: [{ type: mongoose.Types.ObjectId, ref: "orders" }],
 },{timestamps:true});
 
 module.exports = mongoose.model("user",userSchema);
